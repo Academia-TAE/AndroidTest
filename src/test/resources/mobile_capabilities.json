@@ -1,0 +1,10 @@
+{
+	"deviceName": "Redmi Note 11",
+	"udid": "4d67ded9",
+	"platformName": "Android",
+	"platformVersion": "13",
+	"appPackage": "com.wdiodemoapp",
+	"appActivity": "com.wdiodemoapp.MainActivity",
+	"app": "/Users/jesus.traslavina/Downloads/Android-NativeDemoApp-0.4.0.apk",
+	"automationName": "uiautomator2"
+}
