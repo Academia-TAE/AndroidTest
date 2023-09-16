@@ -9,12 +9,13 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseMobileTest {
     private HomeScreen homeScreen;
     private LoginScreen loginScreen;
+
     @Test
     public void SignTest() {
-        log.info("LoginTest");
-        homeScreen = loadHomeScreen();
-        loginScreen = homeScreen.goToLoginScreen();
-        loginScreen.fillInLoginData("jesus@gmail.corp","Trasla7474");
-        Assert.assertEquals("Success",loginScreen.verifySuccessLogin());
+        log.info("LoginTest"); // Logging a test description
+        homeScreen = loadHomeScreen(); // Load the HomeScreen
+        loginScreen = homeScreen.goToLoginScreen(); // Navigate to the LoginScreen
+        loginScreen.fillInLoginData("jesus@gmail.corp", "Trasla7474"); // Enter login data
+        Assert.assertEquals("Success", loginScreen.verifySuccessLogin()); // Verify successful login
     }
 }

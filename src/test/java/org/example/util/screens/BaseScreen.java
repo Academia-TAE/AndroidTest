@@ -1,56 +1,49 @@
 package org.example.util.screens;
 
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.android.AndroidTouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.pagefactory.HowToUseLocators;
+import io.appium.java_client.pagefactory.LocatorGroupStrategy;
 import io.appium.java_client.touch.offset.PointOption;
-
-
-import static io.appium.java_client.pagefactory.LocatorGroupStrategy.ALL_POSSIBLE;
-import static java.lang.String.format;
-
-
 import org.example.screens.*;
 import org.example.util.CustomWait;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.log4testng.Logger;
 
 public abstract class BaseScreen {
 
-    @HowToUseLocators(androidAutomation = ALL_POSSIBLE)
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Webview']")
-    public AndroidElement webwiewButton;
+    public AndroidElement webViewButton;
 
-    @HowToUseLocators(androidAutomation = ALL_POSSIBLE)
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Login']")
     public AndroidElement loginButton;
 
-    @HowToUseLocators(androidAutomation = ALL_POSSIBLE)
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Forms']")
     public AndroidElement formsButton;
 
-    @HowToUseLocators(androidAutomation = ALL_POSSIBLE)
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Swipe']")
     public AndroidElement swipeButton;
 
-    @HowToUseLocators(androidAutomation = ALL_POSSIBLE)
+    @HowToUseLocators(androidAutomation = LocatorGroupStrategy.ALL_POSSIBLE)
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Drag']")
     public AndroidElement dragButton;
+
     protected final AndroidDriver<AndroidElement> driver;
 
     public BaseScreen(AndroidDriver<AndroidElement> driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
+
     public WebviewScreen goToWebScreen() {
-        click(webwiewButton);
+        click(webViewButton);
         return new WebviewScreen(driver);
     }
 
@@ -85,5 +78,6 @@ public abstract class BaseScreen {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(sequence);
     }
+
     public abstract boolean verifyVisibility();
 }

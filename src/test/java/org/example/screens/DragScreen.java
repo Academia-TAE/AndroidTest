@@ -9,12 +9,15 @@ import java.util.List;
 
 public class DragScreen extends BaseScreen {
 
+    // AndroidElement corresponding to the drag-drop screen title
     @AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc='Drag-drop-screen']/android.view.ViewGroup[1]/android.widget.TextView")
     private AndroidElement dragDropScreenTitle;
 
+    // List of AndroidElements for drop elements
     @AndroidFindBy(xpath = "//android.view.ViewGroup[contains(@content-desc, 'drop-')]")
     private List<AndroidElement> dropElements;
 
+    // List of AndroidElements for drag elements
     @AndroidFindBy(xpath = "//android.view.ViewGroup[contains(@content-desc, 'drag-')]/android.widget.ImageView")
     private List<AndroidElement> dragElements;
 
@@ -24,28 +27,30 @@ public class DragScreen extends BaseScreen {
 
     @Override
     public boolean verifyVisibility() {
-        AndroidElement[] elementos = {dragDropScreenTitle};
+        AndroidElement[] elementsToCheck = { dragDropScreenTitle };
 
-        // Verificar la visibilidad de todos los elementos en el arreglo
-        for (AndroidElement elemento : elementos) {
-            if (!elemento.isDisplayed()) {
-                return false; // Si un elemento no está visible, retorna false
+        // Check if the drag-drop screen title is visible
+        for (AndroidElement element : elementsToCheck) {
+            if (!element.isDisplayed()) {
+                return false; // If the title is not visible, return false
             }
         }
 
+        // Check if all drag elements are visible
         for (AndroidElement dragElement : dragElements) {
             if (!dragElement.isDisplayed()) {
-                return false; // Si un elemento no está visible, retorna false
+                return false; // If any drag element is not visible, return false
             }
         }
 
+        // Check if all drop elements are visible
         for (AndroidElement dropElement : dropElements) {
             if (!dropElement.isDisplayed()) {
-                return false; // Si un elemento no está visible, retorna false
+                return false; // If any drop element is not visible, return false
             }
         }
 
-        return true; // Si todos los elementos están visibles, retorna true
+        return true; // If all elements are visible, return true
     }
 
 }

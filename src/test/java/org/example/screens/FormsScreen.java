@@ -7,6 +7,7 @@ import org.example.util.screens.BaseScreen;
 
 public class FormsScreen extends BaseScreen {
 
+    // AndroidElements corresponding to UI elements
     @AndroidFindBy(xpath = "//android.widget.EditText[@content-desc='text-input']")
     private AndroidElement inputField;
 
@@ -31,16 +32,15 @@ public class FormsScreen extends BaseScreen {
 
     @Override
     public boolean verifyVisibility() {
-        AndroidElement[] elementos = {inputField, textResultTextView, switchElement, dropdownEditText, activeButtonTextView, inactiveButtonTextView};
+        AndroidElement[] elementsToCheck = { inputField, textResultTextView, switchElement, dropdownEditText, activeButtonTextView, inactiveButtonTextView };
 
-        for (AndroidElement elemento : elementos) {
-            if (!elemento.isDisplayed()) {
-                return false; // Si un elemento no está visible, retorna false
+        // Check if each element is visible
+        for (AndroidElement element : elementsToCheck) {
+            if (!element.isDisplayed()) {
+                return false; // If any element is not visible, return false
             }
         }
 
-        return true; // Si todos los elementos están visibles, retorna true
+        return true; // If all elements are visible, return true
     }
-
-
 }

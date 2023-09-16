@@ -22,4 +22,4 @@
       <class name="org.example.tests.SwipeCardsTest"/>
     </classes>
   </test>
-</suite> <!-- Suite -->
+</suite>

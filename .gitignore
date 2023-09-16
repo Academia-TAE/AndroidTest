@@ -1,28 +1,20 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Omitir contenido dentro de .idea
+.idea/*
 
-### IntelliJ IDEA ###
-.idea/
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
+# Excluir el archivo de configuración específico de IntelliJ IDEA
+!.idea/workspace.xml
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/uiDesigner.xml
+!.idea/runConfigurations/*
 
-### Eclipse ###
-.apt_generated
+# Excluir archivos específicos de Eclipse
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
+.settings/
 
-### NetBeans ###
+# Excluir archivos específicos de NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -32,8 +24,18 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# Excluir archivos específicos de Visual Studio Code
 .vscode/
 
-### Mac OS ###
+# Excluir archivos específicos de Mac OS
 .DS_Store
+
+# Excluir la carpeta target en la raíz del proyecto
+/target/
+
+# Incluir el archivo Maven Wrapper
+!.mvn/wrapper/maven-wrapper.jar
+
+# Incluir carpetas target dentro de src/main y src/test
+!**/src/main/**/target/
+!**/src/test/**/target/

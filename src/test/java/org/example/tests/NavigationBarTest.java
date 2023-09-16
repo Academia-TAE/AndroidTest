@@ -6,7 +6,7 @@ import org.example.util.tests.BaseMobileTest;
 import org.testng.annotations.Test;
 
 public class NavigationBarTest extends BaseMobileTest {
-    private  HomeScreen homeScreen;
+    private HomeScreen homeScreen;
     private WebviewScreen webviewScreen;
     private LoginScreen loginScreen;
     private SwipeScreen swipeScreen;
@@ -15,38 +15,44 @@ public class NavigationBarTest extends BaseMobileTest {
 
     @Test
     public void HomeTest() {
-        log.info("testOfVisibility");
-        homeScreen = loadHomeScreen();
-        Assert.assertTrue(homeScreen.verifyVisibility());
+        log.info("HomeTest"); // Logging a test description
+        homeScreen = loadHomeScreen(); // Load the HomeScreen
+        Assert.assertTrue(homeScreen.verifyVisibility()); // Verify HomeScreen visibility
     }
 
     @Test(dependsOnMethods = "HomeTest")
     public void WebViewTest() {
-        webviewScreen = homeScreen.goToWebScreen();
-        Assert.assertTrue(webviewScreen.verifyVisibility());
+        log.info("WebViewTest"); // Logging a test description
+        webviewScreen = homeScreen.goToWebScreen(); // Navigate to the WebviewScreen
+        Assert.assertTrue(webviewScreen.verifyVisibility()); // Verify WebviewScreen visibility
     }
 
     @Test(dependsOnMethods = "WebViewTest")
     public void LoginTest() {
-        loginScreen=webviewScreen.goToLoginScreen();
-        Assert.assertTrue(loginScreen.verifyVisibility()); // Supongamos que la prueba es exitosa
+        log.info("LoginTest"); // Logging a test description
+        loginScreen = webviewScreen.goToLoginScreen(); // Navigate to the LoginScreen
+        Assert.assertTrue(loginScreen.verifyVisibility()); // Verify LoginScreen visibility
+        // Assuming the test is successful, but you can add more assertions here
     }
 
     @Test(dependsOnMethods = "LoginTest")
     public void FormsTest() {
-        formsScreen=loginScreen.goToFormsScreen();
-        Assert.assertTrue(formsScreen.verifyVisibility());
+        log.info("FormsTest"); // Logging a test description
+        formsScreen = loginScreen.goToFormsScreen(); // Navigate to the FormsScreen
+        Assert.assertTrue(formsScreen.verifyVisibility()); // Verify FormsScreen visibility
     }
 
     @Test(dependsOnMethods = "FormsTest")
     public void SwipeTest() {
-        swipeScreen= formsScreen.goToSwipeScreen();
-        Assert.assertTrue(swipeScreen.verifyVisibility());
+        log.info("SwipeTest"); // Logging a test description
+        swipeScreen = formsScreen.goToSwipeScreen(); // Navigate to the SwipeScreen
+        Assert.assertTrue(swipeScreen.verifyVisibility()); // Verify SwipeScreen visibility
     }
 
     @Test(dependsOnMethods = "SwipeTest")
     public void DragTest() {
-        dragScreen=swipeScreen.goToDragScreen();
-        Assert.assertTrue(dragScreen.verifyVisibility());
+        log.info("DragTest"); // Logging a test description
+        dragScreen = swipeScreen.goToDragScreen(); // Navigate to the DragScreen
+        Assert.assertTrue(dragScreen.verifyVisibility()); // Verify DragScreen visibility
     }
 }

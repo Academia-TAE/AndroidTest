@@ -16,6 +16,7 @@ public class LoginScreen extends BaseScreen {
 		super(driver);
 	}
 
+	// AndroidElements corresponding to UI elements
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@content-desc='button-sign-up-container']/android.view.ViewGroup/android.widget.TextView")
 	private AndroidElement signUpViewButton;
 
@@ -34,47 +35,57 @@ public class LoginScreen extends BaseScreen {
 	@AndroidFindBy(xpath = "//android.widget.EditText[@content-desc='input-password']")
 	private AndroidElement passwordTextBox;
 
+	// Other elements used in the class
 	private AndroidElement repeatPasswordEditText;
 	private AndroidElement signUpButton;
+
+	// Confirmation element
 	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView")
 	private AndroidElement confirmation;
 
 	@Override
 	public boolean verifyVisibility() {
-		AndroidElement[] elementos = {signUpViewButton, loginFormButton, biometricButtonTextView, emailTextBox, passwordTextBox};
-		for (AndroidElement elemento : elementos) {
-			if (!elemento.isDisplayed()) {
-				return false; // Si un elemento no está visible, retorna false
+		AndroidElement[] elementsToCheck = { signUpViewButton, loginFormButton, biometricButtonTextView, emailTextBox, passwordTextBox };
+
+		// Check if each element is visible
+		for (AndroidElement element : elementsToCheck) {
+			if (!element.isDisplayed()) {
+				return false; // If any element is not visible, return false
 			}
 		}
-		return true; // Si todos los elementos están visibles, retorna true
+
+		return true; // If all elements are visible, return true
 	}
 
-	public String verifySuccessSignUp(){
+	// Methods to verify success messages
+	public String verifySuccessSignUp() {
 		CustomWait wait = new CustomWait();
-		wait.waitAndroidElementVisibility(driver,confirmation,5);
+		wait.waitAndroidElementVisibility(driver, confirmation, 5);
 		return confirmation.getText();
 	}
 
-	public String verifySuccessLogin(){
+	public String verifySuccessLogin() {
 		CustomWait wait = new CustomWait();
-		wait.waitAndroidElementVisibility(driver,confirmation,5);
+		wait.waitAndroidElementVisibility(driver, confirmation, 5);
 		return confirmation.getText();
 	}
 
-	public void changeToSignUp(){
+	// Method to switch to sign-up view
+	public void changeToSignUp() {
 		click(signUpViewButton);
-		try{
+		try {
 			getSignUpElements();
-		}catch (Exception e){};
+		} catch (Exception e) { }
 	}
 
+	// Method to fill in login data and perform login
 	public void fillInLoginData(String email, String password) {
 		sendKeys(emailTextBox, email);
 		sendKeys(passwordTextBox, password);
 		click(loginFormButton);
 	}
 
+	// Method to fill in sign-up data and perform sign-up
 	public void signUpData(String email, String password) {
 		sendKeys(emailTextBox, email);
 		sendKeys(passwordTextBox, password);
@@ -82,15 +93,18 @@ public class LoginScreen extends BaseScreen {
 		click(signUpButton);
 	}
 
-	public void getSignUpElements(){
-		repeatPasswordEditText=getRepeatPassword();
-		signUpButton=getSignUpButton();
+	// Helper method to get additional sign-up elements
+	public void getSignUpElements() {
+		repeatPasswordEditText = getRepeatPassword();
+		signUpButton = getSignUpButton();
 	}
 
+	// Helper method to find an element by XPath
 	public AndroidElement findElementByXPath(String xpath) {
 		return driver.findElement(By.xpath(xpath));
 	}
 
+	// Methods to get specific elements
 	public AndroidElement getRepeatPassword() {
 		return findElementByXPath("//android.widget.EditText[@content-desc='input-repeat-password']");
 	}
@@ -98,5 +112,4 @@ public class LoginScreen extends BaseScreen {
 	public AndroidElement getSignUpButton() {
 		return findElementByXPath("//android.view.ViewGroup[@content-desc='button-SIGN UP']//android.widget.TextView");
 	}
-
 }

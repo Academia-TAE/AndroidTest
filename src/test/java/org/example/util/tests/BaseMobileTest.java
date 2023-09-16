@@ -1,6 +1,5 @@
 package org.example.util.tests;
 
-
 import org.example.screens.HomeScreen;
 import org.example.util.ConfigCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,10 +15,10 @@ import org.testng.log4testng.Logger;
 public abstract class BaseMobileTest {
 
     protected HomeScreen homeScreen;
-    public static AndroidDriver<AndroidElement> driver;
-    public Logger log = Logger.getLogger(BaseMobileTest.class);
+    protected static AndroidDriver<AndroidElement> driver;
+    protected Logger log = Logger.getLogger(BaseMobileTest.class);
 
-    public void setUpStartApp() {
+    protected void setUpStartApp() {
         homeScreen = new HomeScreen(getDriver());
     }
 
@@ -29,19 +28,21 @@ public abstract class BaseMobileTest {
         ConfigCapabilities.deviceSetUp(capabilities);
         ConfigCapabilities.applicationSetUp(capabilities);
         try {
-            driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723"), capabilities);
-        } catch (MalformedURLException exception) {
-            exception.printStackTrace();
+            driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723"), capabilities);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
         setUpStartApp();
     }
 
     @AfterTest(alwaysRun = true)
     public void mobileApplicationEnd() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 
-    public AndroidDriver<AndroidElement> getDriver() {
+    protected AndroidDriver<AndroidElement> getDriver() {
         return driver;
     }
 

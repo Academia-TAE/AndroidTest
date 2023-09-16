@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
@@ -18,14 +17,24 @@ public class ConfigCapabilities {
 	private static final String JSON_FILE_PATH = "src/test/resources/mobile_capabilities.json";
 	private static final String APP = "app";
 	private static final String AUTOMATION_NAME = "automationName";
-	private static JsonParser parser = new JsonParser();
+	private static final JsonParser parser = new JsonParser();
 
+	/**
+	 * Sets up application-related capabilities.
+	 *
+	 * @param capabilities The DesiredCapabilities instance to configure.
+	 */
 	public static void applicationSetUp(DesiredCapabilities capabilities) {
 		capabilities.setCapability("appPackage", getJsonDataProperty(APP_PACKAGE));
 		capabilities.setCapability("appActivity", getJsonDataProperty(APP_ACTIVITY));
 		capabilities.setCapability("app", getJsonDataProperty(APP));
 	}
 
+	/**
+	 * Sets up device-related capabilities.
+	 *
+	 * @param capabilities The DesiredCapabilities instance to configure.
+	 */
 	public static void deviceSetUp(DesiredCapabilities capabilities) {
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, getJsonDataProperty(DEVICE_NAME));
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, getJsonDataProperty(PLATFORM_VERSION));

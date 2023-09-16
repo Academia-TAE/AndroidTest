@@ -6,11 +6,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.HowToUseLocators;
 import org.example.util.screens.BaseScreen;
 
-
 import static io.appium.java_client.pagefactory.LocatorGroupStrategy.ALL_POSSIBLE;
 
 public class HomeScreen extends BaseScreen {
 
+	// AndroidElements corresponding to UI elements
 	@AndroidFindBy(xpath = "//android.widget.ScrollView[@content-desc='Home-screen']/android.view.ViewGroup/android.widget.ImageView[1]")
 	public AndroidElement robotImage;
 
@@ -36,17 +36,17 @@ public class HomeScreen extends BaseScreen {
 		super(driver);
 	}
 
-
 	@Override
 	public boolean verifyVisibility() {
-		AndroidElement[] elementos = {robotImage, titleTextView, titleImageView, infoText, appleImage, androidImage, supportView};
+		AndroidElement[] elementsToCheck = { robotImage, titleTextView, titleImageView, infoText, appleImage, androidImage, supportView };
 
-		for (AndroidElement elemento : elementos) {
-			if (!elemento.isDisplayed()) {
-				return false; // Si un elemento no está visible, retorna false
+		// Check if each element is visible
+		for (AndroidElement element : elementsToCheck) {
+			if (!element.isDisplayed()) {
+				return false; // If any element is not visible, return false
 			}
 		}
 
-		return true; // Si todos los elementos están visibles, retorna true
+		return true; // If all elements are visible, return true
 	}
 }
