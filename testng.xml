@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite">
-  <test thread-count="1" name="Test">
+
+  <test thread-count="1" name="Test_1">
     <classes>
-      <class name="org.example.tests.LoginAppTest"/>
+      <class name="org.example.tests.NavigationBarTest"/>
     </classes>
-  </test> <!-- Test -->
+  </test>
+  <test thread-count="1" name="Test_2">
+    <classes>
+      <class name="org.example.tests.SignUpTest"/>
+    </classes>
+  </test>
+  <test thread-count="1" name="Test_3">
+    <classes>
+      <class name="org.example.tests.LoginTest"/>
+    </classes>
+  </test>
+  <test thread-count="1" name="Test_4">
+    <classes>
+      <class name="org.example.tests.SwipeCardsTest"/>
+    </classes>
+  </test>
 </suite> <!-- Suite -->
